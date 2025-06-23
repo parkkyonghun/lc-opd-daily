@@ -8,7 +8,8 @@ WORKDIR /app
 
 # Copy package files
 COPY package.json package-lock.json ./
-RUN npm ci
+# Use legacy-peer-deps to avoid npm ci errors on Railway
+RUN npm ci --legacy-peer-deps
 
 # Rebuild the source code only when needed
 FROM base AS builder
@@ -51,7 +52,7 @@ COPY --from=builder /app/prisma ./prisma
 
 # Install only production dependencies
 COPY package.json package-lock.json ./
-RUN npm ci --only=production
+RUN npm ci --only=production --legacy-peer-deps
 
 # Generate Prisma client in production
 RUN npx prisma generate
@@ -63,4 +64,4 @@ EXPOSE 3000
 ENV PORT 3000
 ENV HOSTNAME "0.0.0.0"
 
-CMD ["node", "server.js"] 
+CMD ["node", "server.js"]
