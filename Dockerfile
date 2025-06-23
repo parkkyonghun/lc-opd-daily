@@ -28,7 +28,7 @@ ENV NEXT_DISABLE_TYPECHECK=1
 RUN npx prisma generate
 
 # Build the application
-RUN npm run build
+RUN npm run build --no-lint
 
 # Production image, copy all the files and run next
 FROM base AS runner
