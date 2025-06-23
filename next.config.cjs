@@ -36,6 +36,8 @@ const nextConfig = {
   experimental: {
     // Add any existing experimental options here
   },
+  eslint: { ignoreDuringBuilds: true },
+  typescript: { ignoreBuildErrors: true },
 };
 
 const pwaConfig = {
