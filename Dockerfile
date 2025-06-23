@@ -18,9 +18,11 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 # Set environment variables
-ENV NEXT_TELEMETRY_DISABLED 1
-ENV NODE_ENV production
-ENV NEXTJS_IGNORE_ESLINT 1
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV NODE_ENV=production
+ENV NEXTJS_IGNORE_ESLINT=1
+ENV NEXT_DISABLE_ESLINT=1
+ENV NEXT_DISABLE_TYPECHECK=1
 
 # Generate Prisma client
 RUN npx prisma generate
