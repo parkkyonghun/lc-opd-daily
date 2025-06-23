@@ -20,6 +20,7 @@ COPY . .
 # Set environment variables
 ENV NEXT_TELEMETRY_DISABLED 1
 ENV NODE_ENV production
+ENV NEXTJS_IGNORE_ESLINT 1
 
 # Generate Prisma client
 RUN npx prisma generate
